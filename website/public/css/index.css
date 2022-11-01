@@ -13,26 +13,41 @@
     font-size: 4vw;
     margin-left: 2vw;
     font-weight: 700;
-    color: rgb(0, 0, 0);
-    text-shadow: 2px 2px 4px rgb(221, 221, 221);
+    color: rgb(253, 253, 253);
+    text-shadow: 4px 4px 6px rgb(0, 0, 0);
 }
 
-.index-inicial-card {
-    margin-top: 32vh;
+
+.index-inicial-container {
+  position: relative;
+  z-index: 6;
+  margin-top: 32vh;
+  width: 58%;
 }
+
+/* .index-inicial-card {
+    margin-top: 5;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 50%;
+    z-index: 2;
+    height: 25vh;
+    filter: blur(4px);
+} */
 
 .index-texto-inicial {
-    width: 40%;
+    width: 80%;
     font-size: 1.5vw;
     margin-left: 2vw;
     font-weight: 500;
-    color: rgb(0, 0, 0);
-    text-shadow: 1px 1px 2px rgb(221, 221, 221);
+    color: rgb(252, 252, 252);
+    text-shadow: 3px 3px 4px rgb(0, 0, 0);
+    text-align: justify;
 }
 
 .index-img-fundo {
     margin-top: -50vh;
-    background-image: url(superliminal_blur.jpg);
+    background-image: url(steve-allen-312.jpg);
     background-size: cover;
     height: 104vh;
 }
@@ -63,7 +78,7 @@
     flex-direction: column;
     height: 100%;
     width: 60vw;
-    background-color: #edd2c9;
+    background-color: #7fd7ed;
     /* background-image: linear-gradient( 358.4deg,  #ceab68 -2.1%, whitesmoke 90% ); */
     justify-content: center;
     align-items: center;

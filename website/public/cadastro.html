@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Superliminal</title>
+    <link rel="stylesheet" href="css/cadastro.css">
+
+</head>
+
+<body>
+
+    <div class="btnBack">
+        <img src="assets/login/arrowBack.svg" onclick="voltarPagina()" />
+    </div>
+
+    <section class="container-card-login">
+        <div class="card-login">
+            <div class="container-login">
+                <h1>Cadastro</h1>
+                <form class="form">
+                    <div class="container-input">
+                        <input id="inputUsuario" type="text" name="" placeholder="Nome Completo" onblur="validarUsuario()"
+                        required class="input-login" />
+                        <input id="inputUsuario" type="text" name="" placeholder="Email" onblur="validarUsuario()"
+                            required class="input-login" />
+                        <div class="container-input">
+                            <input type="password" name="" id="inputSenha" placeholder="Senha" onblur="validarSenha()"
+                                required class="input-login" />
+                            <img id="btnVisibility" class="visibility" onclick="mostrarSenha()"
+                                src="assets/login/visibilityLogin.svg" alt="" />
+                        </div>
+                        <div class="container-input">
+                            <input type="password" name="" id="inputSenha" placeholder="Confirmar Senha" onblur="validarSenha()"
+                                required class="input-login" />
+                            <img id="btnVisibility" class="visibility" onclick="mostrarSenha()"
+                                src="assets/login/visibilityLogin.svg" alt="" />
+                        </div>
+                        <div class="container-input">
+                            <input onclick="entrar()" type="button" value="Cadastrar" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- <img src="./assets/login/chess.png" class="chess-piece"> -->
+        </div>
+    </section>
+
+
+</body>
+
+</html>
+
+<script src="js/cadastro.js"></script>

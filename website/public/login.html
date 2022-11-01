@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,44 @@
     <link rel="stylesheet" href="css/login.css">
 
 </head>
+
 <body>
-    
+
+    <div class="btnBack">
+        <img src="assets/login/arrowBack.svg" onclick="voltarPagina()" />
+    </div>
+
+    <section class="container-card-login">
+        <div class="card-login">
+            <div class="container-login">
+                <h1>Login</h1>
+                <form class="form">
+                    <div class="container-input">
+                        <input id="inputUsuario" type="text" name="" placeholder="Email" onblur="validarUsuario()"
+                            required class="input-login" />
+                        <div class="container-input">
+                            <input type="password" name="" id="inputSenha" placeholder="Senha" onblur="validarSenha()"
+                                required class="input-login" />
+                            <img id="btnVisibility" class="visibility" onclick="mostrarSenha()"
+                                src="assets/login/visibilityLogin.svg" alt="" />
+                        </div>
+                        <div class="container-input">
+                            <input onclick="entrar()" type="button" value="Entrar" />
+                        </div>
+
+                        <div class="container-input">
+                            <span class="cadastrar">Não tem conta? Cadastre-se clicando
+                                <a href="cadastro.html"> aqui.</a></span>
+                        </div>
+                </form>
+            </div>
+            <!-- <img src="./assets/login/chess.png" class="chess-piece"> -->
+        </div>
+    </section>
+
+
 </body>
+
 </html>
+
+<script src="js/login.js"></script>

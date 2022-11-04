@@ -22,24 +22,20 @@
                 <h1>Cadastro</h1>
                 <form class="form">
                     <div class="container-input">
-                        <input id="inputUsuario" type="text" name="" placeholder="Nome Completo" onblur="validarUsuario()"
+                        <input id="inputUsuario" type="text" placeholder="Nome Completo" onblur="validarNome()"
                         required class="input-login" />
-                        <input id="inputUsuario" type="text" name="" placeholder="Email" onblur="validarUsuario()"
+                        <input id="inputEmail" type="text" placeholder="Email" onblur="validarEmail()"
                             required class="input-login" />
                         <div class="container-input">
-                            <input type="password" name="" id="inputSenha" placeholder="Senha" onblur="validarSenha()"
+                            <input type="password" id="inputSenha" placeholder="Senha" onblur="validarSenha()"
                                 required class="input-login" />
-                            <img id="btnVisibility" class="visibility" onclick="mostrarSenha()"
-                                src="assets/login/visibilityLogin.svg" alt="" />
                         </div>
                         <div class="container-input">
-                            <input type="password" name="" id="inputSenha" placeholder="Confirmar Senha" onblur="validarSenha()"
+                            <input type="password" id="inputConfirmacaoSenha" placeholder="Confirmar Senha" onblur="validarConfirmacaoSenha()"
                                 required class="input-login" />
-                            <img id="btnVisibility" class="visibility" onclick="mostrarSenha()"
-                                src="assets/login/visibilityLogin.svg" alt="" />
                         </div>
                         <div class="container-input">
-                            <input onclick="entrar()" type="button" value="Cadastrar" />
+                            <input onclick="cadastrar()" type="button" value="Cadastrar" />
                         </div>
                     </div>
                 </form>
@@ -53,4 +49,5 @@
 
 </html>
 
+<script src="js/validacao.js"></script>
 <script src="js/cadastro.js"></script>

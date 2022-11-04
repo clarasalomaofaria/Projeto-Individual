@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    
+    <head>
+        <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AquaTech | Avisos</title>
+        
+        <link rel="stylesheet" href="css/forum-style-all.css">
+        <script src="../js/funcoes.js"></script>
+        <script src="../js/forum.js"></script>
+
+</head>
+
+<body onload="validarSessao(), atualizarFeed()">
+    <!-- <body onload="validarSessao()"> -->
+
+    <div class="janela">
+
+
+        <div class="sidebar">
+
+            <div class="container-logo">
+                <img src="./assets/header/Superliminal_white_logo.png" class="logo">
+            </div>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="sidebar-nav">
+                    <a href="forum.html" class="sidebar-button sidebar-element">
+                        <h3>Sobre o forum</h3>
+                    </a>
+
+                    <a href="forum-topicos.html" class="sidebar-button sidebar-element">
+                        <h3>Tópicos</h3>
+                    </a>
+
+                    <a href="cards.html" class="sidebar-button sidebar-element">
+                        <h3>Votações</h3>
+                    </a>
+
+            </div>
+
+            <div class="logout sidebar-button" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+        </div>
+
+        <div class="dash-right">
+
+            <div class="avisos">
+                <div class="container">
+                    <h1>Publicar um aviso</h1>
+                    <div class="div-form">
+                        <form id="form_postagem" method="post" onsubmit="return publicar()">
+                            <label>
+                                Título:
+                                <br>
+                                <input name="titulo" id="titulo" maxlength="100" type="text">
+                            </label>
+                            <br>
+                            <label>
+                                Descrição (máximo de 250 caracteres):
+                                <br>
+                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                            </label>
+                            <br>
+                            <button>Enviar</button>
+                        </form>
+                    </div>
+                    <h1>Mural de Avisos</h1>
+                    <div class="div-results">
+                        <div id="feed_container" class="feed-container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- MODAL -->
+            <!-- <div id="div_modal" class="div-modal">
+                <div id="modal_backdrop" onclick="fecharModal()" class="modal-backdrop">
+                </div>
+                <div id="modal_container" class="modal-container">
+                    <button class="btn-fechar-modal" onclick="fecharModal()">X</button>
+                </div>
+            </div> -->
+
+            <!-- AGUARDAR -->
+            <!-- <div id="div_aguardar" class="div-aguardar">
+                <img src="./assets/aguarde-pink3.gif" id="img_aguarde">
+            </div>  -->
+
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
+
+
+<script>
+
+</script>

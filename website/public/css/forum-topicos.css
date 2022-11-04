@@ -1,0 +1,10 @@
+
+.dash-right {
+    display: flex;
+    width: 75%;
+    height: fit-content;
+    position: relative;
+    top: 0;
+    left: 25%;
+    color: #f8f8f8;
+  }

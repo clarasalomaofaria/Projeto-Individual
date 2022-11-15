@@ -209,7 +209,7 @@
     left: calc(100% / 3);
   }
   
-  /* 2nd, 5th, 8th */
+  /* 3nd, 6th, 9th */
   .mouse-position-tracker:nth-child(3n) {
     right: 0;
   }

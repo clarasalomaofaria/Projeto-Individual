@@ -6,13 +6,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Avisos</title>
+    <title>Forum Tópicos - Superliminal</title>
 
     <link rel="stylesheet" href="css/forum-style-all.css">
     <link rel="stylesheet" href="css/forum-topicos.css">
-    <script src="../js/funcoes.js"></script>
 
 </head>
+
+<div class="div_fundo"></div>
 
 <body onload="validarSessao(), atualizarFeed()">
     <!-- <body onload="validarSessao()"> -->
@@ -31,17 +32,17 @@
             </div>
 
             <div class="sidebar-nav">
-                    <a href="forum.html" class="sidebar-button sidebar-element">
-                        <h3>Sobre o forum</h3>
-                    </a>
+                <a href="forum.html" class="sidebar-button sidebar-element">
+                    <h3>Sobre os posts</h3>
+                </a>
 
-                    <a href="forum-topicos.html" class="sidebar-button sidebar-element">
-                        <h3>Tópicos</h3>
-                    </a>
+                <a href="forum-topicos.html" class="sidebar-button sidebar-element topicos">
+                    <h3>Posts</h3>
+                </a>
 
-                    <a href="cards.html" class="sidebar-button sidebar-element">
-                        <h3>Votações</h3>
-                    </a>
+                <a href="forum-votacao.html" class="sidebar-button sidebar-element">
+                    <h3>Votações</h3>
+                </a>
 
             </div>
 
@@ -57,24 +58,25 @@
                     <h1>Compartilhe um tópico</h1>
                     <div class="div-form">
                         <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
+                            <label class="form-postagem-label">
                                 Título:
                                 <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
+                                <input name="titulo" id="titulo" maxlength="70" type="text">
                             </label>
                             <br>
-                            <label>
-                                Descrição (máximo de 500 caracteres):
+                            <label class="form-postagem-label">
+                                Descrição (máximo de 3000 caracteres):
                                 <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="500" rows="20"></textarea>
+                                <textarea name="descricao" id="textarea_descricao" maxlength="3000" rows="10"></textarea>
                             </label>
                             <br>
-                            <button>Enviar</button>
+                            <span class="button-enviar-container"><button class="button-enviar">Enviar</button></span>
                         </form>
                     </div>
                     <h1>Tópicos</h1>
                     <div class="div-results">
                         <div id="feed_container" class="feed-container">
+                            <!-- <div id="feed_comment_container" class="feed-comment-container"></div> -->
                         </div>
                     </div>
                 </div>
@@ -111,167 +113,334 @@
 
 <script>
 
-b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-function limparFormulario() {
-    document.getElementById("form_postagem").reset();
-}
-
-function publicar() {
-    var idUsuario = sessionStorage.ID_USUARIO;
-
-    var corpo = {
-        titulo: form_postagem.titulo.value,
-        descricao: form_postagem.descricao.value
+    function limparFormulario() {
+        document.getElementById("form_postagem").reset();
     }
 
-    fetch(`/avisos/publicar/${idUsuario}`, {
-        method: "post",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(corpo)
-    }).then(function (resposta) {
+    function publicar() {
 
-        console.log("resposta: ", resposta);
+        var idUsuario = sessionStorage.ID_USUARIO;
 
-        if (resposta.ok) {
-            window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-            window.location = "forum-topicos.html";
-            limparFormulario();
-            finalizarAguardar();
-        } else if (resposta.status == 404) {
-            window.alert("Deu 404!");
-        } else {
-            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+        var corpo = {
+            titulo: form_postagem.titulo.value,
+            descricao: form_postagem.descricao.value
         }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-    });
 
-    return false;
+        fetch(`/avisos/publicar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
 
-}
+            console.log("resposta: ", resposta);
 
-function editar(idAviso) {
-    sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-    console.log("cliquei em editar - " + idAviso);
-    window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
-    window.location = "edicao-forum-topicos.html"
-
-}
-
-function deletar(idAviso) {
-    console.log("Criar função de apagar post escolhido - ID" + idAviso);
-    fetch(`/avisos/deletar/${idAviso}`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then(function (resposta) {
-
-        if (resposta.ok) {
-            window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-            window.location = "forum-topicos.html"
-        } else if (resposta.status == 404) {
-            window.alert("Deu 404!");
-        } else {
-            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
-}
-
-function atualizarFeed() {
-    //aguardar();
-    fetch("/avisos/listar").then(function (resposta) {
-        if (resposta.ok) {
-            if (resposta.status == 204) {
-                var feed = document.getElementById("feed_container");
-                var mensagem = document.createElement("span");
-                mensagem.innerHTML = "Nenhum resultado encontrado."
-                feed.appendChild(mensagem);
-                throw "Nenhum resultado encontrado!!";
+            if (resposta.ok) {
+                window.location = "forum-topicos.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
 
-            resposta.json().then(function (resposta) {
-                console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                var feed = document.getElementById("feed_container");
-                feed.innerHTML = "";
-                for (let i = 0; i < resposta.length; i++) {
-                    var publicacao = resposta[i];
-
-                    // criando e manipulando elementos do HTML via JavaScript
-                    var divPublicacao = document.createElement("div");
-                    var spanID = document.createElement("span");
-                    var spanTitulo = document.createElement("span");
-                    var spanNome = document.createElement("span");
-                    var divDescricao = document.createElement("div");
-                    var divButtons = document.createElement("div");
-                    var btnEditar = document.createElement("button");
-                    var btnDeletar = document.createElement("button");
+        return false;
 
 
-                    spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                    spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                    spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                    divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                    btnEditar.innerHTML = "Editar";
-                    btnDeletar.innerHTML = "Deletar";
+    }
 
-                    divPublicacao.className = "publicacao";
-                    spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                    spanNome.className = "publicacao-nome";
-                    spanTitulo.className = "publicacao-titulo";
-                    divDescricao.className = "publicacao-descricao";
+    // function comentar() {
 
-                    divButtons.className = "div-buttons"
+    //     // fetch("/avisos/listar").then(function (resposta) {
+    //     //     if (resposta.ok) {
+    //     //         if (resposta.status == 204) {
+    //     //             var feed_comment = document.getElementById("feed_comment_container");
+    //     //             var mensagem = document.createElement("span");
+    //     //             mensagem.innerHTML = "Nenhum resultado encontrado."
+    //     //             feed_comment.appendChild(mensagem);
+    //     //             throw "Nenhum resultado encontrado!!";
+    //     //         }
 
-                    btnEditar.className = "publicacao-btn-editar"
-                    btnEditar.id = "btnEditar" + publicacao.idAviso;
-                    btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+    //     //         resposta.json().then(function (resposta) {
+    //     //             console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    btnDeletar.className = "publicacao-btn-editar"
-                    btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                    btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+    //     //             var feed_comment = document.getElementById("feed_comment_container");
+    //     //             feed_comment.innerHTML = "";
+    //     //             for (let i = 0; i < resposta.length; i++) {
+    //     //                 var publicacao = resposta[i];
 
-                    divPublicacao.appendChild(spanID);
-                    divPublicacao.appendChild(spanNome);
-                    divPublicacao.appendChild(spanTitulo);
-                    divPublicacao.appendChild(divDescricao);
-                    divPublicacao.appendChild(divButtons);
-                    divButtons.appendChild(btnEditar);
-                    divButtons.appendChild(btnDeletar);
-                    feed.appendChild(divPublicacao);
+    //     //                 // criando e manipulando elementos do HTML via JavaScript
+    //     //                 var divPublicacao = document.createElement("div");
+    //     //                 var inputComent = document.createElement("input");
+    //     //                 var spanNome = document.createElement("span");
+    //     //                 var divDescricao = document.createElement("div");
+    //     //                 var divButtons = document.createElement("div");
+    //     //                 var btnEnviar = document.createElement("button");
+
+
+    //     //                 spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+    //     //                 divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+    //     //                 btnEnviar.innerHTML = "Enviar";
+
+    //     //                 divPublicacao.className = "publicacao" + publicacao.idAviso;
+    //     //                 spanNome.className = "publicacao-nome";
+    //     //                 inputComent.className = "publicacao-input";
+    //     //                 divDescricao.className = "publicacao-descricao";
+
+    //     //                 divButtons.className = "div-buttons"
+
+    //     //                 btnEnviar.className = "publicacao-btn-enviar"
+    //     //                 btnEnviar.id = "btnEnviar" + publicacao.idAviso;
+    //     //                 btnEnviar.setAttribute("onclick", `btnEnviar(${publicacao.idAviso})`);
+
+    //     //                 divPublicacao.appendChild(spanNome);
+    //     //                 divPublicacao.appendChild(inputComent);
+    //     //                 divPublicacao.appendChild(divDescricao);
+    //     //                 divPublicacao.appendChild(divButtons);
+    //     //                 divButtons.appendChild(btnEnviar);
+    //     //                 feed.appendChild(divPublicacao);
+    //     //             }
+
+    //     //             finalizarAguardar();
+    //     //         });
+    //     //     } else {
+    //     //         throw ('Houve um erro na API!');
+    //     //     }
+    //     // }).catch(function (resposta) {
+    //     //     console.error(resposta);
+    //     //     finalizarAguardar();
+    //     // });
+    //     // <form id="form_postagem" method="post" onsubmit="return publicar()">
+    //     //                     <label>
+    //     //                         Título:
+    //     //                         <br>
+    //     //                         <input name="titulo" id="titulo" maxlength="100" type="text">
+    //     //                     </label>
+    //     //                     <br>
+    //     //                     <label>
+    //     //                         Descrição (máximo de 500 caracteres):
+    //     //                         <br>
+    //     //                         <textarea name="descricao" id="textarea_descricao" maxlength="500" rows="20"></textarea>
+    //     //                     </label>
+    //     //                     <br>
+    //     //                     <button>Enviar</button>
+    //     //                 </form>
+    // }
+
+
+    function editar(idAviso) {
+        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
+        console.log("cliquei em editar - " + idAviso);
+        window.alert("Você será redirecionado à página de edição");
+        window.location = "edicao-forum-topicos.html"
+    }
+
+    function deletar(idAviso) {
+        console.log("Criar função de apagar post escolhido - ID" + idAviso);
+        fetch(`/avisos/deletar/${idAviso}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post deletado com sucesso!");
+                window.location = "forum-topicos.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function atualizarFeed() {
+        //aguardar();
+        fetch("/avisos/listar").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
                 }
 
-                finalizarAguardar();
-            });
-        } else {
-            throw ('Houve um erro na API!');
-        }
-    }).catch(function (resposta) {
-        console.error(resposta);
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divPublicacao = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanTitulo = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var divDescricao = document.createElement("div");
+                        var divButtons = document.createElement("div");
+                        var btnEditar = document.createElement("button");
+                        var btnDeletar = document.createElement("button");
+                        var btnComentar = document.createElement("button");
+
+
+                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+                        spanTitulo.innerHTML = "Título: <br><b>" + publicacao.titulo + "</b>";
+                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                        divDescricao.innerHTML = "Descrição: <br><b>" + publicacao.descricao + "</b>";
+                        btnEditar.innerHTML = "Editar";
+                        btnDeletar.innerHTML = "Deletar";
+                        btnComentar.innerHTML = "Comentar";
+
+                        divPublicacao.className = "publicacao";
+                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                        spanNome.className = "publicacao-nome";
+                        spanTitulo.className = "publicacao-titulo";
+                        divDescricao.className = "publicacao-descricao";
+
+                        divButtons.className = "div-buttons"
+
+                        btnEditar.className = "publicacao-btn-editar"
+                        btnEditar.id = "btnEditar" + publicacao.idAviso;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+
+                        btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+                        btnComentar.className = "publicacao-btn-editar"
+                        btnComentar.id = "btnComentar" + publicacao.idAviso;
+                        btnComentar.setAttribute("onclick", `comentar(${publicacao.idAviso})`);
+
+                        // divPublicacao.appendChild(spanNome);
+                        divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(divDescricao);
+                        divPublicacao.appendChild(divButtons);
+                        divButtons.appendChild(btnEditar);
+                        divButtons.appendChild(btnDeletar);
+                        // divButtons.appendChild(btnComentar);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+    // function atualizarFeed() {
+    //     //aguardar();
+    //     fetch("/avisos/listar").then(function (resposta) {
+    //         if (resposta.ok) {
+    //             if (resposta.status == 204) {
+    //                 var feed = document.getElementById("feed_container");
+    //                 var mensagem = document.createElement("span");
+    //                 mensagem.innerHTML = "Nenhum resultado encontrado."
+    //                 feed.appendChild(mensagem);
+    //                 throw "Nenhum resultado encontrado!!";
+    //             }
+
+    //             resposta.json().then(function (resposta) {
+    //                 console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+    //                 var feed = document.getElementById("feed_container");
+    //                 feed.innerHTML = "";
+    //                 for (let i = 0; i < resposta.length; i++) {
+    //                     var publicacao = resposta[i];
+
+    //                     // criando e manipulando elementos do HTML via JavaScript
+    //                     var divPublicacao = document.createElement("div");
+    //                     var spanID = document.createElement("span");
+    //                     var spanTitulo = document.createElement("span");
+    //                     var spanNome = document.createElement("span");
+    //                     var divDescricao = document.createElement("div");
+    //                     var divButtons = document.createElement("div");
+    //                     var btnEditar = document.createElement("button");
+    //                     var btnDeletar = document.createElement("button");
+    //                     var btnComentar = document.createElement("button");
+
+
+    //                     spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+    //                     spanTitulo.innerHTML = "Título: <br><b>" + publicacao.titulo + "</b>";
+    //                     spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+    //                     divDescricao.innerHTML = "Descrição: <br><b>" + publicacao.descricao + "</b>";
+    //                     btnEditar.innerHTML = "Editar";
+    //                     btnDeletar.innerHTML = "Deletar";
+    //                     btnComentar.innerHTML = "Comentar";
+
+    //                     divPublicacao.className = "publicacao";
+    //                     spanTitulo.id = "inputNumero" + publicacao.idAviso;
+    //                     spanNome.className = "publicacao-nome";
+    //                     spanTitulo.className = "publicacao-titulo";
+    //                     divDescricao.className = "publicacao-descricao";
+
+    //                     divButtons.className = "div-buttons"
+
+    //                     btnEditar.className = "publicacao-btn-editar"
+    //                     btnEditar.id = "btnEditar" + publicacao.idAviso;
+    //                     btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+
+    //                     btnDeletar.className = "publicacao-btn-editar"
+    //                     btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+    //                     btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+    //                     btnComentar.className = "publicacao-btn-editar"
+    //                     btnComentar.id = "btnComentar" + publicacao.idAviso;
+    //                     btnComentar.setAttribute("onclick", `comentar(${publicacao.idAviso})`);
+
+    //                     // divPublicacao.appendChild(spanNome);
+    //                     divPublicacao.appendChild(spanTitulo);
+    //                     divPublicacao.appendChild(divDescricao);
+    //                     divPublicacao.appendChild(divButtons);
+    //                     divButtons.appendChild(btnEditar);
+    //                     divButtons.appendChild(btnDeletar);
+    //                     // divButtons.appendChild(btnComentar);
+    //                     feed.appendChild(divPublicacao);
+    //                 }
+
+    //                 finalizarAguardar();
+    //             });
+    //         } else {
+    //             throw ('Houve um erro na API!');
+    //         }
+    //     }).catch(function (resposta) {
+    //         console.error(resposta);
+    //         finalizarAguardar();
+    //     });
+    // }
+
+    function testar() {
+        aguardar();
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_postagem")));
+
+        var divResultado = document.getElementById("div_feed");
+
+        divResultado.appendChild(document.createTextNode(formulario.get("descricao")));
+        divResultado.innerHTML = formulario.get("descricao");
+
         finalizarAguardar();
-    });
-}
 
-function testar() {
-    aguardar();
+        return false;
+    }
 
-    var formulario = new URLSearchParams(new FormData(document.getElementById("form_postagem")));
-
-    var divResultado = document.getElementById("div_feed");
-
-    divResultado.appendChild(document.createTextNode(formulario.get("descricao")));
-    divResultado.innerHTML = formulario.get("descricao");
-
-    finalizarAguardar();
-
-    return false;
-}
 
 </script>

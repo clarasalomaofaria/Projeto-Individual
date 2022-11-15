@@ -6,10 +6,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Página Inicial</title>
+    <title>Edição Forum Tópicos - Superliminal</title>
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="./dashboards.css">
+    <link rel="stylesheet" href="css/forum-style-all.css">
+    <link rel="stylesheet" href="css/edicao-forum-topicos.css">
     <script src="js/forum.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,36 +24,34 @@
     <div class="janela">
 
 
-        <div class="header-left">
+        <div class="sidebar"> 
 
-            <h1>AquaTech</h1>
+            <div class="container-logo">
+                <img src="./assets/header/Superliminal_white_logo.png" class="logo">
+            </div>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="cards.html">
-                    <h3>Aquários</h3>
+            <div class="sidebar-nav">
+                <a href="forum.html" class="sidebar-button sidebar-element">
+                    <h3>Sobre os posts</h3>
                 </a>
+
+                <a href="forum-topicos.html" class="sidebar-button sidebar-element topicos">
+                    <h3>Posts</h3>
+                </a>
+
+                <a href="forum-votacao.html" class="sidebar-button sidebar-element">
+                    <h3>Votações</h3>
+                </a>
+
             </div>
 
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
+            <div class="logout sidebar-button" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
-
         </div>
 
         <div class="dash-right">
@@ -61,32 +59,20 @@
             <div class="avisos">
                 <div class="container">
                     <h1>Editar um aviso</h1>
-                    <div class="div-form">
-                        <label>
-                            ID:
-                            <br>
-                            <input id="input_id" maxlength="100" type="text" style="color: rgb(196, 196, 196)" disabled>
-                        </label>
-                        <label>
-                            Autor:
-                            <br>
-                            <input id="input_nome" maxlength="100" type="text" style="color: rgb(196, 196, 196)"
-                                disabled>
-                        </label>
-                        <label>
+                    <div class="form">
+                        <label class="form-postagem-label">
                             Título:
                             <br>
-                            <input id="input_titulo" maxlength="100" type="text" style="color: rgb(196, 196, 196)"
-                                disabled>
+                            <input id="input_titulo" maxlength="100" type="text" class="form-input" >
                         </label>
                         <br>
-                        <label>
+                        <label class="form-postagem-label">
                             Descrição (máximo de 250 caracteres):
                             <br>
-                            <textarea id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                            <textarea id="textarea_descricao" maxlength="500" rows="20" class="form-textarea"></textarea>
                         </label>
                         <br>
-                        <button onclick="editar()">Editar</button>
+                        <span class="button-enviar-container"><button onclick="editar()" class="button-enviar">Editar</button></span>
                     </div>
 
                 </div>
@@ -114,8 +100,8 @@
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.alert("Post atualizado com sucesso!");
+                window.location = "forum-topicos.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {

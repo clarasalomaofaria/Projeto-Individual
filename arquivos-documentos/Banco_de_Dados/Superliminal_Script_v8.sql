@@ -95,7 +95,7 @@ INSERT INTO valores_quiz (fk_questoes, valor) VALUES
 (12, 'Eternamente famoso após sua morte');
 
 INSERT INTO voto (fk_usuario, fk_valores_quiz) VALUES
-(2, 2);
+(2, 1);
 truncate table voto;
 select * from voto v
 	join valores_quiz q on v.fk_valores_quiz = q.id;

@@ -5,6 +5,27 @@ body {
     width: 100%;
   }
 
+  .div-pelicula-fundo {
+    background-color: rgba(0, 0, 0, 0.88);
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -900;
+  }
+  
+.video-bg {
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -999;
+  }
+
 .votacoes {
     background-color: rgba(223, 226, 234, 0.8);
     border: 1px solid white;
@@ -20,7 +41,7 @@ body {
     width: 50vw;
     height: 100%;
     border-radius: 8px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.92);
     margin-left: 32vw;
     margin-top: 10vh;
     box-shadow: 6px 7px 2px 1px rgba(255, 255, 255, 0.25);
@@ -82,13 +103,15 @@ body {
 
 .red {
     margin-right: 0.5vw;
-    background-color: rgb(224, 38, 38);
+    /* background-color: rgb(224, 38, 38); */
+    background-color: rgb(222, 25, 25);
     color: white;
 }
 
 .blue {
     margin-left: 0.5vw;
-    background-color: rgb(31, 159, 202);
+    /* background-color: rgb(31, 159, 202); */
+    background-color: rgb(25, 169, 176);
     color: white;
 }
 
@@ -110,11 +133,13 @@ body {
 }
 
 .naoEscolhidoRed {
-    background-color: rgb(141, 118, 118);
+    background-color: rgb(185, 174, 174);
+    /* background-color: rgb(141, 118, 118); */
 }
 
 .naoEscolhidoBlue {
-    background-color: rgb(113, 126, 130);
+    /* background-color: rgb(113, 126, 130); */
+    background-color: rgb(156, 165, 165);
 }
 
 .quiz-questao p {
@@ -130,9 +155,30 @@ body {
 .quiz-texto {
     margin-top: 2vh;
     font-size: 1.1rem;
-    border-bottom: 1px solid black;
 }
 
 .ultima-questao {
     margin-bottom: 5vh;
+}
+
+.btnReset {
+    border: none;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    background-color: rgb(160, 158, 161);
+    color: white;
+    width: 9vw;
+    height: 6vh;
+    border-radius: 6px;
+    padding: 2%;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.btnReset:hover {
+    transition: 0.2s;
+    transform: translateY(-2px);
+    background-color: rgb(70, 68, 72);
+    color: white;
+    border: 2px solid rgb(205, 193, 214);
 }

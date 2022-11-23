@@ -16,6 +16,16 @@
         <img src="assets/login/arrowBack.svg" onclick="voltarPagina()" />
     </div>
 
+    <div class="senha-box" style="visibility: hidden;" id="senha-box"> 
+        <div class="senha-box-bg">
+            <p>Porfavor insira uma senha com: </p>
+            <p>6 caracteres</p>
+            <p>letra minúscula</p>
+            <p>letra maiúscula</p>
+            <p>caracter especial</p>
+        </div>
+    </div>
+
     <section class="container-card-login">
         <div class="card-login">
             <div class="container-login">
@@ -36,6 +46,9 @@
                         </div>
                         <div class="container-input">
                             <input onclick="validar_autenticacao_cadastro()" type="button" value="Cadastrar" />
+                        </div>
+                        <div class="cadastro-feedback" style="visibility: hidden;" id="cadastro-feedback">
+                            <p>Cadastro inválido!</p>
                         </div>
                     </div>
                 </form>

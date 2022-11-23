@@ -1656,6 +1656,23 @@ function listarQ12E2Other(req, res) {
         );
 }
 
+function deletarVotos(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    votosModel.deletarVotos(idUsuario)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao deletar os votos: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 
 
@@ -1731,5 +1748,6 @@ module.exports = {
     listarQ12E1Other,
     cadastrarVotoQ12E2,
     listarQ12E2,
-    listarQ12E2Other
+    listarQ12E2Other,
+    deletarVotos
 }

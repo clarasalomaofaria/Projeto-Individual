@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum Tópicos - Superliminal</title>
+
+  <link rel="stylesheet" href="css/forum-style-all.css">
+  <link rel="stylesheet" href="css/game.css">
+
+</head>
+
+<body onload="validarSessao(), checarScore()">
+
+  <div class="janela"> </div>
+
+  <div class="sidebar">
+
+    <div class="container-logo">
+      <img src="./assets/header/Superliminal_white_logo.png" class="logo">
+    </div>
+
+    <div class="hello">
+      <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+    </div>
+
+    <div class="sidebar-nav">
+      <a href="forum.html" class="sidebar-button sidebar-element">
+        <h3>Sobre os posts</h3>
+      </a>
+
+      <a href="forum-topicos.html" class="sidebar-button sidebar-element">
+        <h3>Posts</h3>
+      </a>
+
+      <a href="forum-votacao.html" class="sidebar-button sidebar-element">
+        <h3>Votação</h3>
+      </a>
+
+      <a href="game.html" class="sidebar-button sidebar-element game">
+        <h3>Game</h3>
+      </a>
+
+    </div>
+
+    <div class="logout sidebar-button" onclick="limparSessao()">
+      <h3>Sair</h3>
+    </div>
+
+  </div>
+
+  <section class="card-game-texto" id="CardGameTexto">
+    <div class="highscore" id="highscore"></div>
+  </section>
+
+  <main class="main-game">
+    <canvas id="meuCanvas" width="800" height="600"></canvas>
+    <div class="game-bg">
+  </div>
+  </main>
+
+</body>
+
+</html>
+
+<script src="js/game.js"></script>

@@ -363,4 +363,8 @@ router.get("/listarQ12E2Other", function (req, res) {
     votosController.listarQ12E2Other(req, res);
 });
 
+router.delete("/deletarVotos/:idUsuario", function (req, res) {
+    votosController.deletarVotos(req, res);
+});
+
 module.exports = router;

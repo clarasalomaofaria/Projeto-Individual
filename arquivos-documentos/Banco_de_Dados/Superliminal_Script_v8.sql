@@ -108,7 +108,7 @@ SELECT ROUND((SELECT COUNT(v.id) FROM voto v WHERE v.fk_valores_quiz = 1) /
 			ON vq.id = v.fk_valores_quiz
 				JOIN questoes q 
 					ON vq.fk_questoes = q.id
-						WHERE v.fk_valores_quiz = 1 ;
+						WHERE v.fk_valores_quiz = 1;
                         
 SELECT ROUND((SELECT COUNT(v.id) FROM voto v WHERE v.fk_valores_quiz = 2) /
  (SELECT COUNT(v.id) FROM voto v WHERE v.fk_valores_quiz = 1 OR v.fk_valores_quiz = 2) * 100 ) AS porcentagem,

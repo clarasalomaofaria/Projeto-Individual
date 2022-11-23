@@ -13,10 +13,16 @@
 
 </head>
 
-<div class="div_fundo"></div>
+<!-- <div class="div_fundo"></div> -->
+
 
 <body onload="validarSessao(), atualizarFeed()">
     <!-- <body onload="validarSessao()"> -->
+
+        
+    <div class="div-pelicula-fundo"></div>
+
+    <video src="assets/forum/SnapSave.io-Free 4K Loop - Blue Blurred Background 023.mp4" autoplay muted class="video-bg"></video>
 
     <div class="janela">
 
@@ -41,7 +47,11 @@
                 </a>
 
                 <a href="forum-votacao.html" class="sidebar-button sidebar-element">
-                    <h3>Votações</h3>
+                    <h3>Votação</h3>
+                </a>
+
+                <a href="game.html" class="sidebar-button sidebar-element">
+                    <h3>Game</h3>
                 </a>
 
             </div>
@@ -55,7 +65,7 @@
 
             <div class="avisos">
                 <div class="container">
-                    <h1>Compartilhe um tópico</h1>
+                    <h1>Compartilhe um post (anônimo)</h1>
                     <div class="div-form">
                         <form id="form_postagem" method="post" onsubmit="return publicar()">
                             <label class="form-postagem-label">
@@ -74,7 +84,7 @@
                             <span class="button-enviar-container"><button class="button-enviar">Enviar</button></span>
                         </form>
                     </div>
-                    <h1 class="titulo-topicos">Tópicos</h1>
+                    <h1 class="titulo-topicos">Posts</h1>
                     <div class="div-results">
                         <div id="feed_container" class="feed-container">
                             <!-- <div id="feed_comment_container" class="feed-comment-container"></div> -->

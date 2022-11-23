@@ -140,3 +140,22 @@ transition: 200ms ease-in-out;
 .cadastrar a {
     color: rgb(81, 162, 255);
 }
+
+  .senha-feedback {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    margin-top: -2vh;
+    margin-bottom: 1vh;
+    color: #db482a;
+  }
+
+  .red {
+    box-shadow: 0px 4px #db0f0fb5;
+    border: .02px solid #000;
+  }
+  .green {
+    box-shadow: 0px 4px #7cdb0fb5;
+    border: .01px solid #000;
+  }

@@ -1,8 +1,40 @@
 
+
+body {
+  overflow-x: hidden;
+  /* background-image: url(checkered-purple-persp2.png);
+  width: 100%; */
+  /* -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
+}
+
+.div-pelicula-fundo {
+  /* background-color: #2d342d; */
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -900;
+}
+
+.video-bg {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -990;
+}
+
 .dash-right {
     margin-top: 4vh;
     width: 74%;
-    height: fit-content;
+    height: fit-content; 
     position: relative;
     top: 0;
     left: 22%;
@@ -55,7 +87,7 @@
     width: 8vw;
     height: 4vh;
     border-radius: 8px;
-    background-color: rgb(108, 96, 168);
+    background-color: rgb(107, 96, 168);
     border: 1px solid white;
     color: white;
     transition: 0.8s;

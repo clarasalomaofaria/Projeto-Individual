@@ -1,5 +1,13 @@
 /* Validando os campos */
 
+function avisoSenhaVisibilidade() {
+  document.getElementById('senha-box').style.visibility='visible';
+}
+
+function avisoSenhaInvisibilidade() {
+  document.getElementById('senha-box').style.visibility='hidden';
+}
+
 
 var senha_global = "";
 var validar_senha = false;
@@ -24,10 +32,12 @@ function validarSenha() {
     validar_senha = true;
     inputSenha.classList.remove("red");
     inputSenha.classList.add("green");
+    avisoSenhaInvisibilidade()
   } else {
     validar_senha = false;
     inputSenha.classList.add("red");
     inputSenha.classList.remove("green");
+    avisoSenhaVisibilidade()
   }
 }
 
@@ -104,9 +114,19 @@ function validar_autenticacao_cadastro() {
   ) {
     alert(`Cadastro realizado com sucesso!`)
     cadastrar()
+    avisoCadastroInvisibilidade()
   } else {
-    alert("Cadastro inválido");
+    avisoCadastroVisibilidade()
+    // alert("Cadastro inválido");
   }
+}
+
+function avisoCadastroVisibilidade() {
+  document.getElementById('cadastro-feedback').style.visibility='visible';
+}
+
+function avisoCadastroInvisibilidade() {
+  document.getElementById('cadastro-feedback').style.visibility='hidden';
 }
 
 function voltarPagina() {
@@ -132,7 +152,7 @@ function cadastrar() {
   //     finalizarAguardar();
   //     return false;
   // }
-  // else {
+  // else { 
   //     setInterval(sumirMensagem, 5000)
   // }
 
@@ -154,11 +174,13 @@ function cadastrar() {
       console.log("resposta: ", resposta);
 
       if (resposta.ok) {
+
           alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
 
           setTimeout(() => {
               window.location = "login.html";
           }, "2000")
+
           
           limparFormulario();
           // finalizarAguardar();
@@ -172,4 +194,3 @@ function cadastrar() {
 
   return false;
 }
-

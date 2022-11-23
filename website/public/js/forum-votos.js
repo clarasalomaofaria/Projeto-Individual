@@ -112,6 +112,7 @@
              q1e1.appendChild(check);
            }
 
+
          });
        } else {
          throw ('Houve um erro na API!');
@@ -3252,3 +3253,181 @@
     }
     
   }
+
+  function restarVotacao() {
+
+    sessionStorage.BTNCLICK1 = 0
+    sessionStorage.BTNCLICK2 = 0
+    sessionStorage.BTNCLICK3 = 0
+    sessionStorage.BTNCLICK4 = 0
+    sessionStorage.BTNCLICK5 = 0
+    sessionStorage.BTNCLICK6 = 0
+    sessionStorage.BTNCLICK7 = 0
+    sessionStorage.BTNCLICK8 = 0
+    sessionStorage.BTNCLICK9 = 0
+    sessionStorage.BTNCLICK10 = 0
+    sessionStorage.BTNCLICK11 = 0
+    sessionStorage.BTNCLICK12 = 0
+
+    var sectionVotacao = document.getElementById('sectionVotacao')
+
+    sectionVotacao.innerHTML = `
+    <div class="quiz-questao">
+    <p>Voce preferiria ...?</p>
+    <div class="quiz-button-container">
+      <button class="quiz-button red" onclick="cadastrarQ1E1()" id="q1e1">
+        Poder viajar ao passado
+      </button>
+      <button class="quiz-button blue" onclick="cadastrarQ1E2()" id="q1e2">
+        Poder viajar ao futuro
+    </button>
+  </div>
+</div>
+<div class="quiz-questao">
+  <p>Voce preferiria ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ2E1()" id="q2e1">
+      Nunca mais ouvir música ao vivo
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ2E2()" id="q2e2">
+      Nunca mais ouvir música gravada
+    </button>
+  </div>
+</div>
+<div class="quiz-questao">
+  <p>Voce preferiria ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ3E1()" id="q3e1">
+      Ser rico em um trabalho que você odeia
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ3E2()" id="q3e2">
+      Não ter tanto dinheiro em um trabalho que você ama
+    </button>
+  </div>
+</div>
+<div class="quiz-questao">
+  <p>Voce preferiria ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ4E1()" id="q4e1">
+      Morar na Antártica
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ4E2()" id="q4e2">
+      Morar no Sahara
+    </button>
+  </div>
+</div>
+<div class="quiz-questao">
+  <p>Voce prefere ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ5E1()" id="q5e1">
+      Verão
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ5E2()" id="q5e2">
+      Inverno
+    </button>
+  </div>
+</div>
+<div class="quiz-questao">
+  <p>Voce preferiria ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ6E1()" id="q6e1">
+      Poder de teleportar
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ6E2()" id="q6e2">
+      Poder de ler mentes
+    </button>
+  </div>
+</div>
+<div class="quiz-questao">
+  <p>Voce preferiria ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ7E1()" id="q7e1">
+      Ser o melhor jogador do pior time
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ7E2()" id="q7e2">
+      Ser o pior jogador reserva do melhor time
+    </button>
+  </div>
+</div>
+<div class="quiz-questao">
+  <p>Voce preferiria ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ8E1()" id="q8e1">
+      Ser famoso
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ8E2()" id="q8e2">
+      Ser rico
+    </button>
+  </div>
+</div>
+<div class="quiz-questao">
+  <p>Voce preferiria ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ9E1()" id="q9e1">
+      Ter uma inteligencia de um gênio
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ9E2()" id="q9e2">
+      Ter uma beleza extraordinaria
+    </button>
+  </div>
+</div>
+<div class="quiz-questao">
+  <p>Voce preferiria ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ10E1()" id="q10e1">
+      Ter que dormir 15 horas por dia
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ10E2()" id="q10e2">
+      Ter que dormir 3 horas por dia
+    </button>
+  </div>
+</div>
+<div class="quiz-questao">
+  <p>Voce preferiria ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ11E1()" id="q11e1">
+      Pular 5 anos da sua vida
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ11E2()" id="q11e2">
+      Voltar 5 anos da sua vida
+    </button>
+  </div>
+</div>
+<div class="quiz-questao ultima-questao">
+  <p>Voce preferiria ...?</p>
+  <div class="quiz-button-container">
+    <button class="quiz-button red" onclick="cadastrarQ12E1()" id="q12e1">
+      Ser famoso nessa vida
+    </button>
+    <button class="quiz-button blue" onclick="cadastrarQ12E2()" id="q12e2">
+      Ser eternamente famoso após sua morte
+    </button>
+  </div>
+</div>
+    `
+
+    deletarVotos()
+  }
+
+  function deletarVotos() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+    console.log("Resetar voto do usuário");
+    fetch(`/votos/deletarVotos/${idUsuario}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (resposta) {
+  
+        if (resposta.ok) {
+            console.log("Votos deletados com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+        } else if (resposta.status == 404) {
+          console.log("Deu 404!");
+        } else {
+            throw ("Erro! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+  }
+  

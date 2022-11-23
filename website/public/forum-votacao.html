@@ -16,6 +16,10 @@
 <body onload="validarSessao()">
   <!-- <body onload="validarSessao()"> -->
 
+    <div class="div-pelicula-fundo"></div>
+
+    <video src="assets/forum/checkered_bg_trim.mp4" autoplay muted loop class="video-bg"></video>
+
   <div class="janela">
 
 
@@ -39,8 +43,12 @@
         </a>
 
         <a href="forum-votacao.html" class="sidebar-button sidebar-element votacoes">
-          <h3>Votações</h3>
+          <h3>Votação</h3>
         </a>
+
+        <a href="game.html" class="sidebar-button sidebar-element">
+          <h3>Game</h3>
+      </a>
 
       </div>
 
@@ -53,17 +61,18 @@
 
       <section class="container-quiz">
         <div class="card-quiz">
-          <h3>Quiz de escolhas</h3>
+          <h3>Votação de escolhas</h3>
           <p class="quiz-texto">Escolha a situação que você preferir e veja como a maioria encara diversas situações!</p>
           <!-- <button onclick="comecar_quiz()" class="button-quiz">Começar o quiz</button> -->
-          <div class="quiz-questao">
-            <p>Voce preferiria ...?</p>
-            <div class="quiz-button-container">
-              <button class="quiz-button red" onclick="cadastrarQ1E1()" id="q1e1">
-                Poder viajar ao passado
-              </button>
-              <button class="quiz-button blue" onclick="cadastrarQ1E2()" id="q1e2">
-                Poder viajar ao futuro
+          <section id="sectionVotacao">
+            <div class="quiz-questao">
+              <p>Voce preferiria ...?</p>
+              <div class="quiz-button-container">
+                <button class="quiz-button red" onclick="cadastrarQ1E1()" id="q1e1">
+                  Poder viajar ao passado
+                </button>
+                <button class="quiz-button blue" onclick="cadastrarQ1E2()" id="q1e2">
+                  Poder viajar ao futuro
               </button>
             </div>
           </div>
@@ -187,6 +196,10 @@
                 Ser eternamente famoso após sua morte
               </button>
             </div>
+          </div>
+        </section>
+          <div>
+            <button class="btnReset" onclick="restarVotacao()">Restar votação</button>
           </div>
         </div>
 

@@ -10,9 +10,8 @@
 
     <link rel="stylesheet" href="css/forum-style-all.css">
     <link rel="stylesheet" href="css/forum.css">
-    <script src="js/forum.js"></script>
 
-</head>
+</head> 
 
 <body onload="validarSessao(), atualizarFeed()">
     <!-- <body onload="validarSessao()"> -->
@@ -40,7 +39,11 @@
                 </a>
 
                 <a href="forum-votacao.html" class="sidebar-button sidebar-element">
-                    <h3>Votações</h3>
+                    <h3>Votação</h3>
+                </a>
+
+                <a href="game.html" class="sidebar-button sidebar-element">
+                    <h3>Game</h3>
                 </a>
 
             </div>
@@ -73,14 +76,18 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener("mousemove", function (e) {
-            const vidro = document.querySelector('.vidro');
-            vidro.style.left = e.offsetX + 'px';
-            vidro.style.top = e.offsetY + 'px';
-        })
 
-    </script>
 </body>
 
 </html>
+
+<script src="js/forum.js"></script>
+
+<script>
+    document.addEventListener("mousemove", function (e) {
+        const vidro = document.querySelector('.vidro');
+        vidro.style.left = e.offsetX + 'px';
+        vidro.style.top = e.offsetY + 'px';
+    })
+
+</script>

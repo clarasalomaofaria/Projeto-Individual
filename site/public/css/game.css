@@ -1,0 +1,106 @@
+body {
+  overflow-x: hidden;
+  /* background-color: rgb(170, 75, 75); */
+  width: 100%;
+}
+
+html {
+  position: relative;
+  background: url(assets/game/bg_game.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: -999;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.game {
+  background-color: rgba(223, 226, 234, 0.8);
+  border: 1px solid white;
+  color: rgb(26, 26, 26);
+  border-radius: 20px 0 0 20px;
+  font-weight: 800;
+}
+
+.container-card-texto {
+  margin-top: 10vh;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+  display: flex;
+  height: 80vh;
+  width: 52vw;
+  margin-left: 32vw;
+  background-color: rgba(249, 249, 249, 0.92);
+  border-radius: 16px;
+  z-index: -900;
+  font-size: 1.6rem;
+}
+
+.card-texto {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6vh;
+  width: 80%;
+}
+
+.card-texto h1 {
+  margin-top: 2vh;
+  margin-bottom: 4vh;
+}
+
+.texto-jogo-abaixo {
+  margin-top: 3vh;
+}
+
+.clock {
+  margin-bottom: -20vh;
+  margin-left: 50vw;
+}
+
+.game-bg {
+  height: 82vh;
+  width: 52vw;
+  margin-left: 32vw;
+  position: relative;
+  background-color: rgba(249, 249, 249, 0.92);
+  border: 4px solid #b1b590;
+  border-radius: 16px;
+  z-index: -999;
+}
+
+#meuCanvas {
+  position: absolute;
+  margin-left: 32vw;
+  margin-top: -4vh;
+  padding-top: 2%;
+}
+
+.main-game {
+  position: absolute;
+  margin-top: 5vh;
+  width: 100%;
+  height: 78%;
+}
+
+.card-game-texto {
+  margin-top: 10vh;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  height: 12vh;
+  width: 52vw;
+  margin-left: 32vw;
+  background-color: rgba(249, 249, 249, 0.92);
+  border: 2px solid #848860;
+  border-radius: 14px;
+  z-index: -999;
+  font-size: 1.6rem;
+}
+

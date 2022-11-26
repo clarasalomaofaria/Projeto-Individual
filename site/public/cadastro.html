@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Superliminal</title>
+    <link rel="stylesheet" href="css/cadastro.css">
+
+</head>
+
+<body>
+
+    <div class="btnBack">
+        <img src="assets/login/arrowBack.svg" onclick="voltarPagina()" />
+    </div>
+
+    <div class="senha-box" style="visibility: hidden;" id="senha-box"> 
+        <div class="senha-box-bg">
+            <p>Porfavor insira uma senha com: </p>
+            <p>6 caracteres</p>
+            <p>letra minúscula</p>
+            <p>letra maiúscula</p>
+            <p>caracter especial</p>
+        </div>
+    </div>
+
+    <section class="container-card-login">
+        <div class="card-login">
+            <div class="container-login">
+                <h1>Cadastro</h1>
+                <form class="form">
+                    <div class="container-input">
+                        <input id="inputUsuario" type="text" placeholder="Nome Completo" onblur="validarNome()"
+                        required class="input-login" />
+                        <input id="inputEmail" type="text" placeholder="Email" onblur="validarEmail()"
+                            required class="input-login" />
+                        <div class="container-input">
+                            <input type="password" id="inputSenha" placeholder="Senha" onblur="validarSenha()"
+                                required class="input-login" />
+                        </div>
+                        <div class="container-input">
+                            <input type="password" id="inputConfirmacaoSenha" placeholder="Confirmar Senha" onblur="validarConfirmacaoSenha()"
+                                required class="input-login" />
+                        </div>
+                        <div class="container-input">
+                            <input onclick="validar_autenticacao_cadastro()" type="button" value="Cadastrar" />
+                        </div>
+                        <div class="cadastro-feedback" style="visibility: hidden;" id="cadastro-feedback">
+                            <p>Cadastro inválido!</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- <img src="./assets/login/chess.png" class="chess-piece"> -->
+        </div>
+    </section>
+
+
+</body>
+
+</html>
+
+<script src="js/validacao.js"></script>

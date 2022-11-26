@@ -1,0 +1,335 @@
+/*Início da Página*/
+.papel-percepcao {
+  position: relative;
+    margin-top: 66vh;
+    width: 24%;
+    margin-left: 74vw;
+    z-index: 99;
+}
+
+.index-titulo-inicial {
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+    font-size: 4vw;
+    margin-left: 2vw;
+    font-weight: 700;
+    color: rgb(253, 253, 253);
+    text-shadow: 4px 4px 6px rgb(0, 0, 0);
+}
+
+
+.index-inicial-container {
+  position: relative;
+  z-index: 6;
+  margin-top: 32vh;
+  width: 58%;
+}
+
+.index-texto-inicial {
+    width: 80%;
+    font-size: 1.5vw;
+    margin-left: 2vw;
+    font-weight: 500;
+    color: rgb(252, 252, 252);
+    text-shadow: 3px 3px 4px rgb(0, 0, 0);
+    text-align: justify;
+}
+
+.index-img-fundo {
+    margin-top: -50vh;
+    background-image: url(steve-allen-312.jpg);
+    background-size: cover;
+    height: 104vh;
+}
+
+/*Main*/
+
+.container-video-mensagem-final {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container-mensagem-final {
+    display: flex;
+    align-items: center;
+    background-color: whitesmoke;
+    width: 100%;
+    height: 85vh;
+}
+
+.video-mensagem-final {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    width: 60%;
+}
+
+.card-video-final {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 60vw;
+    background-color: #7fd7ed;
+    /* background-image: linear-gradient( 358.4deg,  #ceab68 -2.1%, whitesmoke 90% ); */
+    justify-content: center;
+    align-items: center;
+}
+
+.card-video-final h1 {
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    font-size: 2.6rem;
+}
+
+.card-video-final p {
+    color: rgb(0, 0, 0);
+    font-weight: 300;
+    font-size: 1.4rem;
+    margin-top: 4vh;
+    margin-left: 2vw;
+}
+
+.logo {
+    width: 60%;
+    height: 10%;
+}
+
+.strip-bg {
+    margin-top: 20vh;
+    display: flex;
+    background-image: url(3707532-sublim13.jpg);
+    background-size: cover;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-branco {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: justify;
+    border-radius: 10px;
+    background-color: rgba(244, 244, 244, 0.97);
+    height: 120%;
+    width: 30%;
+}
+
+.card-branco-texto {
+  width: 86%;
+  height: 86%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+  font-size: 1.3rem;
+  line-height: 4.5vh;
+}
+
+.grey-bg {
+  display: flex;
+  width: 100%;
+  height: 23vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.grey {
+  display: flex;
+  width: 100%;
+  margin-top: 4vh;
+  height: 0.5vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.pawn {
+  width: 140px;
+  height: 140px;
+  margin-top: 10vh;
+  margin-left: 20vw;
+}
+
+.index-video-inicial {
+    margin-top: 10vh;
+    width: 100%;
+}
+
+.index-bg-triangulo {
+    position: relative;
+    width: 100%;
+    margin-top: -2vh;
+    z-index: -1;
+}
+
+.cubo-quadriculado-bottom {
+    margin-top: 5vh;
+    margin-left: 89vw;
+    width: 10%;
+    top: 0;
+}
+
+/*Tilt Boxes*/
+.container-tilt-boxes {
+    margin-top: -2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.container-tilt-box {
+    position: relative;
+    margin-bottom: 5vh;
+    margin-left: 1vw;
+    width: 70vw;
+    height: 22vh;
+
+  }
+
+  .tilt-box-vermelho {
+    outline: 3px solid rgba(249, 117, 117, 0.8);
+  }
+
+  .tilt-box-amarelo {
+    outline: 3px solid rgba(255, 222, 114, 0.8);
+    margin-left: 28vw;
+  }
+
+  .tilt-box-azul {
+    outline: 3px solid rgba(117, 176, 245, 0.8);
+  }
+  
+.tilt-box {
+    display: grid;
+    color: white;
+    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+    place-content: center;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.32);
+    background-size: cover;
+    background-position: center;
+    --perspective: 400px;
+    --rotationX: 0;
+    --rotationY: 0;
+    --rotationZ: 0;
+    --angle: 15deg;
+    transform: perspective(var(--perspective)) rotateX(var(--rotationX))
+      rotateY(var(--rotationY)) rotateZ(var(--rotationZ));
+    transition: transform 500ms ease;
+  }
+  
+  .tilt-box > :where(h1, p) {
+    margin: 0;
+  }
+
+  .mouse-position-tracker {
+    position: absolute;
+    width: calc(100% / 3);
+    height: calc(100% / 3);
+    z-index: 2;
+  }
+  /* 1st, 4th, 7th */
+  .mouse-position-tracker:nth-child(3n - 2) {
+    left: 0;
+  }
+  /* 2nd, 5th, 8th */
+  .mouse-position-tracker:nth-child(3n - 1) {
+    left: calc(100% / 3);
+  }
+  
+  /* 3nd, 6th, 9th */
+  .mouse-position-tracker:nth-child(3n) {
+    right: 0;
+  }
+  
+  /* 4 to 6 */
+  .mouse-position-tracker:nth-child(n + 4):nth-child(-n + 6) {
+    top: calc(100% / 3);
+  }
+  /* 7 to 9 */
+  .mouse-position-tracker:nth-child(n + 7):nth-child(-n + 9) {
+    bottom: 0;
+  }
+  
+  .mouse-position-tracker:nth-child(1):hover ~ .tilt-box {
+    --rotationX: var(--angle);
+    --rotationY: calc(var(--angle) * -1);
+  }
+  
+  .mouse-position-tracker:nth-child(2):hover ~ .tilt-box {
+    --rotationX: var(--angle);
+  }
+  
+  .mouse-position-tracker:nth-child(3):hover ~ .tilt-box {
+    --rotationX: var(--angle);
+    --rotationY: var(--angle);
+  }
+  
+  .mouse-position-tracker:nth-child(4):hover ~ .tilt-box {
+    --rotationY: calc(var(--angle) * -1);
+  }
+  
+  .mouse-position-tracker:nth-child(6):hover ~ .tilt-box {
+    --rotationY: var(--angle);
+  }
+  
+  .mouse-position-tracker:nth-child(7):hover ~ .tilt-box {
+    --rotationY: calc(var(--angle) * -1);
+    --rotationX: calc(var(--angle) * -1);
+  }
+  
+  .mouse-position-tracker:nth-child(8):hover ~ .tilt-box {
+    --rotationX: calc(var(--angle) * -1);
+  }
+  
+  .mouse-position-tracker:nth-child(9):hover ~ .tilt-box {
+    --rotationY: var(--angle);
+    --rotationX: calc(var(--angle) * -1);
+  }
+
+  /* Footer */
+
+  footer {
+    align-items: center;
+    margin-top: 16vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(31, 31, 31);
+  }
+
+  .footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    border-top: 1px solid rgb(237, 237, 237);
+    width: 90%;
+    margin-left: 3vw;
+  }
+  
+
+  .footer-texto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin-top: 2vh;
+  }
+
+  .footer p {
+    font-size: 1rem;
+    margin-left: 1vw;
+    margin-top: 4vh;
+    color: white;
+  }
+
+  .footer p b {
+    font-size: 1.3rem;
+    margin-left: 0.4vw;
+  }

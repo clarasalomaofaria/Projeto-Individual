@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição Forum Tópicos - Superliminal</title>
+
+    <link rel="stylesheet" href="css/forum-style-all.css">
+    <link rel="stylesheet" href="css/edicao-forum-topicos.css">
+    <script src="js/forum.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="validarSessao(), pegarInformacoesPost()" style="background-color: #161618;">
+    <!-- <body onload="validarSessao()"> -->
+
+    <div class="div-pelicula-fundo"></div>
+
+    <video src="assets/forum/SnapSave.io-Free 4K Loop - Subtle Blurred Background 010.mp4" autoplay muted
+        class="video-bg"></video>
+
+
+    <div class="janela">
+
+
+        <div class="sidebar">
+
+            <div class="container-logo">
+                <img src="./assets/header/Superliminal_white_logo.png" class="logo">
+            </div>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="sidebar-nav">
+                <a href="forum.html" class="sidebar-button sidebar-element">
+                    <h3>Sobre os posts</h3>
+                </a>
+
+                <a href="forum-topicos.html" class="sidebar-button sidebar-element topicos">
+                    <h3>Posts</h3>
+                </a>
+
+                <a href="forum-votacao.html" class="sidebar-button sidebar-element">
+                    <h3>Votação</h3>
+                </a>
+
+
+                <a href="game.html" class="sidebar-button sidebar-element">
+                    <h3>Game</h3>
+                </a>
+
+            </div>
+
+            <div class="logout sidebar-button" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+        </div>
+
+        <div class="dash-right">
+
+            <div class="avisos">
+                <div class="container">
+                    <h1>Editar um aviso</h1>
+                    <div class="form">
+                        <label class="form-postagem-label">
+                            Título:
+                            <br>
+                            <input id="input_titulo" maxlength="100" type="text" class="form-input" >
+                        </label>
+                        <br>
+                        <label class="form-postagem-label">
+                            Descrição (máximo de 250 caracteres):
+                            <br>
+                            <textarea id="textarea_descricao" maxlength="500" rows="20"
+                                class="form-textarea"></textarea>
+                        </label>
+                        <br>
+                        <span class="button-enviar-container"><button onclick="checarVazio()"
+                                class="button-enviar">Editar</button></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function checarVazio() {
+        if (input_titulo.value == "" || textarea_descricao.value == "") {
+            alert('Porfavor preencha todos os campos antes de enviar!')
+        } else if (textarea_descricao.value.length < 8) {
+            alert('A descrição não pode ter menos de 8 letras!')
+        } else {
+            editar()
+        }
+    }
+
+    function editar() {
+        fetch(`/avisos/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                titulo: input_titulo.value,
+                descricao: textarea_descricao.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post atualizado com sucesso!");
+                window.location = "forum-topicos.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+
+    function pegarInformacoesPost() {
+        var idAviso = sessionStorage.ID_POSTAGEM_EDITANDO
+        fetch(`/avisos/pegarInformacoesPost/${idAviso}`).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+                        
+                        var tituloPost = document.getElementById("input_titulo").value = publicacao.titulo
+                        var descricaoPost = document.getElementById("textarea_descricao").value = publicacao.descricao
+
+                    }
+
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+        });
+    }
+
+
+</script>

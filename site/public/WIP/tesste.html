@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+  
+<body>
+    <div id="gfg">
+        <h1 style="color:rgb(0, 60, 128);">TESTE</h1>
+        <h4>Window.requestAnimation()</h4>
+    </div>
+  
+    <script type="text/javascript">
+  
+
+        var start = null; 
+        var element = document.getElementById('gfg');
+  
+        function startAnim(mexendo) {
+  
+            if (!start) {
+                start = mexendo;
+            }
+
+            var progress = mexendo - start;
+  
+
+            element.style.transform = 
+            'translateX(' + Math.min(progress / 10, 1000) + 'px)';
+            window.requestAnimationFrame(startAnim);
+        }
+  
+        window.requestAnimationFrame(startAnim);
+    </script>
+</body>
+  
+</html> 

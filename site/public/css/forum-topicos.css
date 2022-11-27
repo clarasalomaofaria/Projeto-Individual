@@ -7,7 +7,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover; */
-}
+} 
 
 html { 
   position: relative;
@@ -145,10 +145,12 @@ html {
 
   .feed_container {
     font-size: 1rem;
+    text-align: justify;
   }
 
   .publicacao {
     display: flex;
+    text-align: justify;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -178,19 +180,20 @@ html {
   }
 
   .publicacao-descricao b {
-    word-break: break-all;
     display: flex;
     width: 100%;
     justify-content: flex-start;
     font-size: 0.9rem;
     margin-top: 2vh;
     margin-bottom: 6vh;
+    text-align: justify;
   }
 
   .publicacao-descricao {
     display: flex;
     width: 100%;
     justify-content: flex-start;
+    text-align: justify;
   }
 
   .div-buttons {

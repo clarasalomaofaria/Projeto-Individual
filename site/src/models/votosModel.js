@@ -944,7 +944,7 @@ function listarQ9E1() {
     var instrucao = `
     SELECT ROUND((SELECT COUNT(v.id) FROM voto v WHERE v.fk_valores_quiz = 17) /
     (SELECT COUNT(v.id) FROM voto v WHERE v.fk_valores_quiz = 17 OR v.fk_valores_quiz = 18) * 100 ) AS porcentagem,
-        (SELECT COUNT(v.id) FROM voto v WHERE v.fk_valores_quiz = 18)  AS votos, vq.valor AS valor FROM voto v
+        (SELECT COUNT(v.id) FROM voto v WHERE v.fk_valores_quiz = 17)  AS votos, vq.valor AS valor FROM voto v
            JOIN valores_quiz vq 
                ON vq.id = v.fk_valores_quiz
                    JOIN questoes q 

@@ -23,9 +23,14 @@
 
     <div class="div-pelicula-fundo"></div>
 
-    <video src="assets/forum/SnapSave.io-Free 4K Loop - Subtle Blurred Background 010.mp4" autoplay muted
+    <video src="assets/forum/SnapSave.io-Free 4K Loop - Blue Blurred Background 021.mp4" autoplay muted
         class="video-bg"></video>
 
+        <a href="forum-topicos.html" class="container-btnX">
+            <h3 class="btnX">
+               X
+            </h3>
+        </a>
 
     <div class="janela">
 
@@ -68,13 +73,14 @@
         <div class="dash-right">
 
             <div class="avisos">
+
                 <div class="container">
                     <h1>Editar um aviso</h1>
                     <div class="form">
                         <label class="form-postagem-label">
                             Título (máximo de 70 caracteres):
                             <br>
-                            <input id="input_titulo" maxlength="70" type="text" class="form-input" >
+                            <input id="input_titulo" maxlength="70" type="text" class="form-input">
                         </label>
                         <br>
                         <label class="form-postagem-label">
@@ -143,7 +149,7 @@
 
                     for (let i = 0; i < resposta.length; i++) {
                         var publicacao = resposta[i];
-                        
+
                         var tituloPost = document.getElementById("input_titulo").value = publicacao.titulo
                         var descricaoPost = document.getElementById("textarea_descricao").value = publicacao.descricao
 

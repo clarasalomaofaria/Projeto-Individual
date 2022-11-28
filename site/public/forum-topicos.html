@@ -231,25 +231,20 @@
 
                     var feed = document.getElementById("feed_container");
                     feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
+                    for (let i = resposta.length - 1; i >= 0; i--) {
                         var publicacao = resposta[i];
 
                         // criando e manipulando elementos do HTML via JavaScript
                         var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
                         var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
                         var divDescricao = document.createElement("div");
 
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <br><b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <br><b>" + publicacao.descricao + "</b>";
+                        spanTitulo.innerHTML = ` <span class=${"titulo"}>Título:</span> <b>` + publicacao.titulo + "</b>";
+                        divDescricao.innerHTML = ` <span class=${"descricao"}>Descrição:</span> <b>` + publicacao.descricao + "</b>";
 
                         divPublicacao.className = "publicacao";
                         spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                        spanNome.className = "publicacao-nome";
                         spanTitulo.className = "publicacao-titulo";
                         divDescricao.className = "publicacao-descricao";
 

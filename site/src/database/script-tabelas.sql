@@ -55,7 +55,8 @@ CREATE TABLE voto (
 	fk_usuario INT,
     fk_valores_quiz INT,
 	FOREIGN KEY (fk_usuario) REFERENCES usuario (id),
-	FOREIGN KEY (fk_valores_quiz) REFERENCES valores_quiz (id) 
+	FOREIGN KEY (fk_valores_quiz) REFERENCES valores_quiz (id), 
+    UNIQUE INDEX votoUnico (fk_usuario, fk_valores_quiz)
 );
 
 INSERT INTO quiz (titulo, descricao) VALUES
@@ -78,8 +79,8 @@ INSERT INTO questoes (titulo, fk_quiz) VALUES
 INSERT INTO valores_quiz (fk_questoes, valor) VALUES
 (1, 'Poder viajar ao passado'),
 (1, 'Poder viajar ao futuro'),
-(2, 'Música ao vivo'),
-(2, 'Música gravada'),
+(2, 'Nunca mais ouvir música ao vivo'),
+(2, 'Nunca mais ouvir música gravada'),
 (3, 'Ser rico em um trabalho que você odeia'),
 (3, 'Não ter tanto dinheiro em um trabalho que você ama'),
 (4, 'Morar na Antártica'),
@@ -92,7 +93,7 @@ INSERT INTO valores_quiz (fk_questoes, valor) VALUES
 (7, 'Pior jogador do melhor time'),
 (8, 'Famoso'),
 (8, 'Rico'),
-(9, 'Personalidade incrivel'),
+(9, 'Personalidade incrível'),
 (9, 'Beleza extraordinaria'),
 (10, 'Dormir 15 horas'),
 (10, 'Dormir 3 horas'),
@@ -101,82 +102,39 @@ INSERT INTO valores_quiz (fk_questoes, valor) VALUES
 (12, 'Famoso nessa vida'),
 (12, 'Eternamente famoso após sua morte');
 
--- CREATE DATABASE aquatech;
-
--- USE aquatech;
-
--- CREATE TABLE usuario (
--- 	id INT PRIMARY KEY AUTO_INCREMENT,
--- 	nome VARCHAR(50),
--- 	email VARCHAR(50),
--- 	senha VARCHAR(50)
--- );
-
--- CREATE TABLE aviso (
--- 	id INT PRIMARY KEY AUTO_INCREMENT,
--- 	titulo VARCHAR(100),
--- 	descricao VARCHAR(150),
--- 	fk_usuario INT,
--- 	FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
--- );
-
--- create table aquario (
--- /* em nossa regra de negócio, um aquario tem apenas um sensor */
--- 	id INT PRIMARY KEY AUTO_INCREMENT,
--- 	descricao VARCHAR(300)
--- );
-
--- /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
--- create table medida (
--- 	id INT PRIMARY KEY AUTO_INCREMENT,
--- 	dht11_umidade DECIMAL,
--- 	dht11_temperatura DECIMAL,
--- 	luminosidade DECIMAL,
--- 	lm35_temperatura DECIMAL,
--- 	chave TINYINT,
--- 	momento DATETIME,
--- 	fk_aquario INT,
--- 	FOREIGN KEY (fk_aquario) REFERENCES aquario(id)
--- );
-
-
--- /*
--- comando para sql server - banco remoto - ambiente de produção
--- */
-
--- CREATE TABLE usuario (
--- 	id INT PRIMARY KEY IDENTITY(1,1),
--- 	nome VARCHAR(50),
--- 	email VARCHAR(50),
--- 	senha VARCHAR(50),
--- );
-
--- CREATE TABLE aviso (
--- 	id INT PRIMARY KEY IDENTITY(1,1),
--- 	titulo VARCHAR(100),
--- 	descricao VARCHAR(150),
--- 	fk_usuario INT FOREIGN KEY REFERENCES usuario(id)
--- );
-
--- create table aquario (
--- /* em nossa regra de negócio, um aquario tem apenas um sensor */
--- 	id INT PRIMARY KEY IDENTITY(1,1),
--- 	descricao VARCHAR(300)
--- );
-
--- /* esta tabela deve estar de acordo com o que está em INSERT de sua API do arduino - dat-acqu-ino */
-
--- CREATE TABLE medida (
--- 	id INT PRIMARY KEY IDENTITY(1,1),
--- 	dht11_umidade DECIMAL,
--- 	dht11_temperatura DECIMAL,
--- 	luminosidade DECIMAL,
--- 	lm35_temperatura DECIMAL,
--- 	chave TINYINT,
--- 	momento DATETIME,
--- 	fk_aquario INT FOREIGN KEY REFERENCES aquario(id)
--- );
+CREATE TABLE highscore (
+id INT PRIMARY KEY AUTO_INCREMENT,
+score INT,
+dt DATETIME DEFAULT CURRENT_TIMESTAMP,
+fk_usuario INT,
+FOREIGN KEY (fk_usuario) REFERENCES usuario(id)
+);
+  
+INSERT INTO voto (fk_usuario, fk_valores_quiz) VALUES
+(1,1),
+(1,2),
+(1,3),
+(1,4),
+(1,5),
+(1,6),
+(1,7),
+(1,8),
+(1,9),
+(1,10),
+(1,11),
+(1,12),
+(1,13),
+(1,14),
+(1,15),
+(1,16),
+(1,17),
+(1,18),
+(1,19),
+(1,20),
+(1,21),
+(1,22),
+(1,23),
+(1,24);
 
 /*
 comandos para criar usuário em banco de dados azure, sqlserver,

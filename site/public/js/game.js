@@ -4,7 +4,7 @@ context.font = 'bold 30px sans-serif'
 var quantidadeY
 var cameraY
 var atual
-var modo
+var modo 
 var xVelocidade
 var yVelocidade = 5
 var height = 50
@@ -13,11 +13,38 @@ caixas[0] = {
   x: 300,
   y: 300,
   width: 200
-};
+}
 var destrocos = {
   x: 0,
   width: 0
-};
+}
+
+
+restart()
+animar()
+
+function restart() {
+  caixas.splice(1, caixas.length - 1)
+  modo = 'deslizar'
+  cameraY = 0
+  quantidadeY = 0
+  xVelocidade = 2
+  atual = 1
+  novaCaixa()
+  destrocos.y = 0
+}
+
+canvas.onpointerdown = function () {
+  if (modo == 'gameOver') {
+    restart()
+  }
+  else {
+    if (modo == 'deslizar')
+      modo = 'cair';
+  }
+  checarScore()
+}
+
 
 function novaCaixa() {
   caixas[atual] = {
@@ -37,7 +64,7 @@ function gameOver() {
 
 function animar() {
   if (modo != 'gameOver') {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, canvas.width, canvas.height)
     // context.fillText('Pontuação: ' + (atual - 1).toString(), 300, 30);
     var pontuacao = document.getElementById('pontuacao')
     pontuacao.innerHTML = `Pontuação: ${atual - 1}`
@@ -47,86 +74,63 @@ function animar() {
     for (var n = 0; n < caixas.length; n++) {
       var caixa = caixas[n];
       if (i < 10) {
-        context.fillStyle = 'rgb(' + i * 16 + ',' + i * 16 + ',' + i * 16 + ')';
+        context.fillStyle = 'rgb(' + i * 16 + ',' + i * 16 + ',' + i * 16 + ')'
       } else {
         i = 0
-        context.fillStyle = 'rgb(' + i * 16 + ',' + i * 16 + ',' + i * 16 + ')';
+        context.fillStyle = 'rgb(' + i * 16 + ',' + i * 16 + ',' + i * 16 + ')'
       }
 
       i++
-      context.fillRect(caixa.x, 600 - caixa.y + cameraY, caixa.width, height);
+      context.fillRect(caixa.x, 600 - caixa.y + cameraY, caixa.width, height)
     }
     context.fillStyle = 'rgb(227, 23, 23)';
-    context.fillRect(destrocos.x, 600 - destrocos.y + cameraY, destrocos.width, height);
+    context.fillRect(destrocos.x, 600 - destrocos.y + cameraY, destrocos.width, height)
     if (modo == 'deslizar') {
-      caixas[atual].x = caixas[atual].x + xVelocidade;
-      if (xVelocidade > 0 && caixas[atual].x + caixas[atual].width > canvas.width)
-        xVelocidade = -xVelocidade;
-      if (xVelocidade < 0 && caixas[atual].x < 0)
-        xVelocidade = -xVelocidade;
+      caixas[atual].x = caixas[atual].x + xVelocidade
+      if (xVelocidade > 0 && caixas[atual].x + caixas[atual].width > canvas.width || xVelocidade < 0 && caixas[atual].x < 0) {
+        xVelocidade = -xVelocidade
+      }
+
     }
     if (modo == 'cair') {
       caixas[atual].y = caixas[atual].y - yVelocidade;
       if (caixas[atual].y == caixas[atual - 1].y + height) {
-        modo = 'deslizar';
-        var diferenca = caixas[atual].x - caixas[atual - 1].x;
+        modo = 'deslizar'
+        var diferenca = caixas[atual].x - caixas[atual - 1].x
         if (Math.abs(diferenca) >= caixas[atual].width) {
-          gameOver();
+          gameOver()
         }
         destrocos = {
           y: caixas[atual].y,
           width: diferenca
-        };
-        if (caixas[atual].x > caixas[atual - 1].x) {
-          caixas[atual].width = caixas[atual].width - diferenca;
-          destrocos.x = caixas[atual].x + caixas[atual].width;
-        } else {
-          destrocos.x = caixas[atual].x - diferenca;
-          caixas[atual].width = caixas[atual].width + diferenca;
-          caixas[atual].x = caixas[atual - 1].x;
         }
-        if (xVelocidade > 0)
-          xVelocidade++;
-        else
-          xVelocidade--;
-        atual++;
-        quantidadeY = height;
-        novaCaixa();
+        if (caixas[atual].x > caixas[atual - 1].x) {
+          caixas[atual].width = caixas[atual].width - diferenca
+          destrocos.x = caixas[atual].x + caixas[atual].width
+        } else {
+          destrocos.x = caixas[atual].x - diferenca
+          caixas[atual].width = caixas[atual].width + diferenca
+          caixas[atual].x = caixas[atual - 1].x
+        }
+        if (xVelocidade > 0) {
+          xVelocidade++
+        }
+        else {
+          xVelocidade--
+        }
+        atual++
+        quantidadeY = height
+        novaCaixa()
       }
     }
     destrocos.y = destrocos.y - yVelocidade;
     if (quantidadeY) {
-      cameraY++;
-      quantidadeY--;
+      cameraY++
+      quantidadeY--
     }
   }
-  window.requestAnimationFrame(animar);
+  window.requestAnimationFrame(animar)
 }
-
-function restart() {
-  caixas.splice(1, caixas.length - 1);
-  modo = 'deslizar';
-  cameraY = 0;
-  quantidadeY = 0;
-  xVelocidade = 2;
-  atual = 1;
-  novaCaixa();
-  destrocos.y = 0;
-}
-
-canvas.onpointerdown = function () {
-  if (modo == 'gameOver') {
-    restart()
-  }
-  else {
-    if (modo == 'deslizar')
-      modo = 'cair';
-  }
-  checarScore()
-};
-
-restart();
-animar();
 
 
 function validarSessao() {
